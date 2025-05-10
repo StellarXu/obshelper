@@ -1,0 +1,11 @@
+#Source Name|Observation Mode|RA(hh:mm:ss.ss)|DEC(dd:mm:ss.s)
+M31_00|DriftWithAngle|00:26:44.35|+42:46:08.7
+M31_01|DriftWithAngle|00:26:44.35|+42:24:29.1
+M31_02|DriftWithAngle|00:26:44.35|+42:02:49.5
+M31_03|DriftWithAngle|00:26:44.35|+41:41:09.9
+M31_04|DriftWithAngle|00:26:44.35|+41:19:30.3
+M31_05|DriftWithAngle|00:26:44.35|+40:57:50.7
+M31_06|DriftWithAngle|00:26:44.35|+40:36:11.1
+M31_07|DriftWithAngle|00:26:44.35|+40:14:31.5
+M31_08|DriftWithAngle|00:26:44.35|+39:52:51.9
+M31_09|DriftWithAngle|00:26:44.35|+39:31:12.3

@@ -1,0 +1,2 @@
+#Source Name|Observation Mode|ON RA(hh:mm:ss.ss)|ON DEC(dd:mm:ss.s)|OFF RA(hh:mm:ss.ss)
+NGC1234|OnOff|03:09:39.08|-07:50:46.1|03:10:25.51

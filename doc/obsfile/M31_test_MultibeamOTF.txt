@@ -1,0 +1,2 @@
+#Source Name|Observation Mode|RA(hh:mm:ss.ss)|DEC(dd:mm:ss.s)|StartRA(hh:mm:ss.ss)|StartDEC(dd:mm:ss.s)|EndRA(hh:mm:ss.ss) |EndDEC(dd:mm:ss.s)
+M31_test|MultiBeamOTF|00:42:44.35|+41:16:08.7|00:36:44.35|+40:43:39.3|00:48:44.35|+41:48:38.1

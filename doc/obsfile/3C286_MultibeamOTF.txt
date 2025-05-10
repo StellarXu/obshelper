@@ -1,0 +1,2 @@
+#Source Name|Observation Mode|RA(hh:mm:ss.ss)|DEC(dd:mm:ss.s)|StartRA(hh:mm:ss.ss)|StartDEC(dd:mm:ss.s)|EndRA(hh:mm:ss.ss) |EndDEC(dd:mm:ss.s)
+3C286|OnTheFlyMapping|13:31:08.29|+30:30:33.0|13:28:58.29|+30:20:36.6|13:33:18.29|+30:40:29.4
