@@ -13,7 +13,7 @@
 * 需要的Python包：
     * Python3环境
     * numpy, matplotlib, pandas等常见包
-    * 天文的需要astropy, ephem, ipyaladin
+    * 天文的需要astropy, ephem, ipyaladin(容易出bug)
     * 配套HI图像包hiviwer请从[这里](https://github.com/StellarXu/hiviewer/tree/main)下载
     
 * 下载安装包后**先cd切换到代码(setup.py)所在目录下**
@@ -69,7 +69,7 @@ Version: v1.0 2025/5/10
 * Required Python packages:
     * Python 3 environment
     * Common packages such as numpy, matplotlib, pandas, etc.
-    * Astronomy-specific packages: astropy, ephem, ipyaladin
+    * Astronomy-specific packages: astropy, ephem, ipyaladin(easy for bugs)
     * The accompanying HI image package hiviwer can be downloaded from [here](https://github.com/StellarXu/hiviewer/tree/main)
 
 * After downloading the installation package, first switch to the directory where the code (setup.py) is located using cd:

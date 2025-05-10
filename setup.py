@@ -15,7 +15,7 @@ setuptools.setup(
     packages=['obshelper', 'obshelper.utils'],
     
     install_requires=['numpy>=1.12', 'matplotlib', 'scipy', 'pandas',
-             'astropy', 'astroquery', 'ephem', 'hiviewer', 
+             'astropy', 'astroquery', 'ephem', 'hiviewer', 'ipyaladin' 
 ],
     classifiers=[
         "Programming Language :: Python :: 3",
