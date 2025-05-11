@@ -32,12 +32,12 @@
 
 ## 中文文档
 
-* 示例1：规划常见模式的扫描观测，适用于`MultibeamOTF`模式。
-* 示例2：规划常见模式的扫描观测，适用于无多波束转角的`OTF`模式。
+* 示例1：规划常见模式的扫描观测，适用于`MultibeamOTF`模式。其中观测时间的计算代码参考了FAST网站上的[这个脚本](https://fast.bao.ac.cn/static/uploadfiles/FAST_help/OTFTimeEstimation20220827.zip)。
+* 示例2：规划常见模式的扫描观测，适用于无多波束转角的`OnTheFlyMapping`模式。
 * 示例3：批量规划`DriftWithAngle`或者`MultibeamOTF`模式的巡天。
 * 示例4：规划`OnOff`模式的观测。`Tracking`相对简单所以不介绍。
 * 示例5: 检查天顶角ZA与合适的观测日期与时间。
-* 示例6:使用两种方法计算给定HI mass surface density对应的RMS。观测时间请使用[FAST官方的积分时间计算器](https://fast.bao.ac.cn/integrated_time_calculate)。
+* 示例6: 使用两种方法计算给定HI mass surface density对应的RMS。观测时间请使用[FAST官方的积分时间计算器](https://fast.bao.ac.cn/integrated_time_calculate)。
 
 ## 扩展
 
@@ -47,6 +47,12 @@
     * [点源成图](https://zhuanlan.zhihu.com/p/681687989)
     * [定标源](https://zhuanlan.zhihu.com/p/10190495339)
     
+## 注意
+
+* 本程序目前不支持`SnapShot`模式的观测规划，因为我们很久没用过了。
+* `OnOff`模式的观测时间很好算，所以目前程序也不包括。
+* 除了考虑不同月份目标天体的距日角距离，月球、其它行星的也可以使用类似的方法计算得到。不过由于我们的观测天区远离黄道，所以我没写。
+* 由于以上原因，欢迎fork帮我修改。
 
 ## 致谢格式
 
@@ -87,8 +93,8 @@ Version: v1.0 2025/5/10
 
 ## Chinese Documentation
 
-* Example 1: Planning common-mode scanning observations suitable for `MultibeamOTF` mode.
-* Example 2: Planning common-mode scanning observations suitable for `OTF` mode without multibeam angles.
+* Example 1: Planning common-mode scanning observations suitable for `MultibeamOTF` mode. The calculation code for observation time refers to [this script](https://fast.bao.ac.cn/static/uploadfiles/FAST_help/OTFTimeEstimation20220827.zip) on the FAST website.
+* Example 2: Planning common-mode scanning observations suitable for `OnTheFlyMapping` mode without multibeam angles.
 * Example 3: Batch planning of sky surveys for `DriftWithAngle` or `MultibeamOTF` modes.
 * Example 4: Planning observations in `OnOff` mode. Tracking is relatively simple and thus not covered.
 * Example 5: Checking zenith angle ZA and suitable observation dates and times.
@@ -101,6 +107,13 @@ Version: v1.0 2025/5/10
     * [Tracking Mode](https://zhuanlan.zhihu.com/p/679377110)
     * [Point Source Imaging](https://zhuanlan.zhihu.com/p/681687989)
     * [Calibrator Sources](https://zhuanlan.zhihu.com/p/10190495339)
+
+## Notes
+
+* This program currently does not support observation scheduling for `SnapShot` mode, as we haven't used it for a long time.
+* The observation time for `OnOff` mode is easy to calculate, so it is not included in the program for now.
+* In addition to considering the angular distance from the sun for target celestial objects in different months, similar methods can be used to calculate for the moon and other planets. However, since our observation areas are far from the ecliptic, I haven't written code the for that.
+* For the above reasons, feel free to fork and help modify.
 
 ## Acknowledgment Format
 
