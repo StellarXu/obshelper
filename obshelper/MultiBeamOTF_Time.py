@@ -147,18 +147,24 @@ class MultiOTFcalculator(object):
             dec1 = self.start.dec + head * np.arange(0, self.scan_gap.value * (self.switchTimes + 1), self.scan_gap.value) * self.scan_gap.unit
         elif self.direction == '|':
             dec1 = self.start.dec + head * np.arange(0, onePathStep.value * (onePathPoints + 1), onePathStep.value) * onePathStep.unit 
-            ra1 = self.start.ra + head * np.arange(0, self.scan_gap.value * (self.switchTimes + 1), self.scan_gap.value) * self.scan_gap.unit
+            ra1 = self.start.ra + head * np.arange(0, self.scan_gap.value * (self.switchTimes + 1), self.scan_gap.value) * self.scan_gap.unit  / np.cos(self.dec * u.degree)
         
         self.mesh1 = np.meshgrid(ra1.value, dec1.value)
         
         # sort direction
         if self.direction == '-':
-            self.mesh1[0] = self.sort_footprint(self.mesh1[0], first_ascending = True)
+            self.mesh1 = np.meshgrid(ra1.value, dec1.value)
+            r = 0
+            d = 1
         elif self.direction == '|':
-            self.mesh1[1] = self.sort_footprint(self.mesh1[1], first_ascending = True)
-            
-        self.ra1 = self.mesh1[0].flatten()
-        self.dec1 = self.mesh1[1].flatten()
+            self.mesh1 = np.meshgrid(dec1.value, ra1.value)
+            r = 1
+            d = 0
+
+        self.mesh1[0] = self.sort_footprint(self.mesh1[0], first_ascending = True)
+
+        self.ra1 = self.mesh1[r].flatten()
+        self.dec1 = self.mesh1[d].flatten()
         
     def footprints_all(self,):
         """
@@ -172,7 +178,7 @@ class MultiOTFcalculator(object):
         self.ra_all = np.full(((19,len(self.ra1))), self.ra1) + np.full((len(self.ra1),19),ras).T
         self.dec_all = np.full(((19,len(self.dec1))), self.dec1) + np.full((len(self.dec1),19),decs).T
         
-    def show_footprints(self, ax, opt, gap = 10, color = 'C0', ms = 1, alpha = 1, **kwargs):
+    def show_footprints(self, ax, opt, gap = 0, color = 'C0', ms = 1, alpha = 1, **kwargs):
         """
         Show footprints on the plot
         
@@ -189,7 +195,11 @@ class MultiOTFcalculator(object):
         
         for i in range(19):
             c = 'r' if i == 0 else color
-            px, py = opt.deg2pix(self.ra_all[i][::gap], self.dec_all[i][::gap],around = False)
+            if gap > 0:
+                px, py = opt.deg2pix(self.ra_all[i][::gap], self.dec_all[i][::gap],around = False)
+            else:
+                px, py = opt.deg2pix(self.ra_all[i], self.dec_all[i],around = False)
+
             ax.plot(px, py, '.', c = c, ms = ms, alpha = alpha)
         ax.set_xlabel('ra')    
         ax.set_ylabel('dec')  
