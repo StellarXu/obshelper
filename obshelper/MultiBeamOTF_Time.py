@@ -35,13 +35,7 @@ class MultiOTFcalculator(object):
             self.diff_dec = diff_dec * u.arcmin
         self.start = start
         self.end = end
-
-    @property
-    def center(self):
-        """
-        Calculate the center position
-        """
-        return coords.SkyCoord(ra = self.ra * u.degree, dec = self.dec * u.degree, 
+        self.center = coords.SkyCoord(ra = self.ra * u.degree, dec = self.dec * u.degree, 
                                frame='icrs')
     
     def get_startend(self):
@@ -81,7 +75,7 @@ class MultiOTFcalculator(object):
         print("Scan gap:", self.scan_gap)
         print("Scan speed:", self.scan_speed)
             
-    def calculate_time(self):
+    def calculate_time(self, Print = True):
         """
         Calculate total observation time
         """
@@ -96,8 +90,9 @@ class MultiOTFcalculator(object):
             self.switchTimes = np.round(self.diff_ra / self.scan_gap)
             
         self.tot_time = self.onePathTime * self.scanTimes + self.switch_time * self.switchTimes
-        print(f"Scan {self.scanTimes} times along {self.direction}, switch {self.switchTimes} times.")
-        print(f"Need total {self.tot_time} = {self.tot_time.to(u.minute)}.")
+        if Print:
+            print(f"Scan {self.scanTimes} times along {self.direction}, switch {self.switchTimes} times.")
+            print(f"Need total {self.tot_time} = {self.tot_time.to(u.minute)}.")
         
         
     def sort_footprint(self, arr, first_ascending = True):
@@ -140,6 +135,8 @@ class MultiOTFcalculator(object):
             print("Sample time:", self.sample_time)
             print("Rotation angle:", self.rotate_angle)
         
+        self.calculate_time(Print = False)
+        
         onePathPoints = self.onePathTime / self.sample_time
         onePathStep = self.onePathTime / onePathPoints * self.scan_speed
         if self.direction == '-':
@@ -165,6 +162,22 @@ class MultiOTFcalculator(object):
 
         self.ra1 = self.mesh1[r].flatten()
         self.dec1 = self.mesh1[d].flatten()
+        
+        if self.direction == '|':
+            self.renew_vertical_scan()
+        
+    def renew_vertical_scan(self, ):
+        print("renew obs time and center")
+        self.start = coords.SkyCoord(self.ra1.min(), self.dec1.min(), unit = (u.deg, u.deg))
+        self.end = coords.SkyCoord(self.ra1.max(), self.dec1.max(), unit = (u.deg, u.deg))
+        self.center = coords.SkyCoord((self.ra1.min() + self.ra1.max()) / 2, 
+                          (self.dec1.min() + self.dec1.max()) / 2, 
+                          unit = (u.deg, u.deg))
+        
+        self.diff_ra = np.abs(self.start.ra - self.end.ra).to(u.arcmin)
+        self.diff_dec = np.abs(self.start.dec - self.end.dec).to(u.arcmin)
+        self.calculate_time()
+    
         
     def footprints_all(self,):
         """
